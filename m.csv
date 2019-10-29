@@ -1,0 +1,2 @@
+id,password,last_login,is_superuser,username,first_name,email,is_staff,is_active,date_joined,last_name
+1,pbkdf2_sha256$150000$y7Um68ZRb2ic$L7RxTTwGUFi8uYwouinmm1luw2j7Z1Y1CJSWxnqioPk=,2019-07-15 16:13:27.292629,1,iaswmn,,evg.ykvts@gmail.com,1,1,2019-07-15 16:12:36.480321,

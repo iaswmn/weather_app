@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    <link href="{% static 'css/less/index.less' %}" rel="stylesheet/less"/>
+    <script src="{% static 'js/less/less.js' %}"></script>
+</head>
+<body>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h5 class="my-0 mr-md-auto font-weight-normal">Eugene Yakovets</h5>
+</div>
+<div class="container">
+    <div class="h1-info">
+        <h1>Write a city to see the weather</h1>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="b-error"{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="col-5 ">
+            <form action="" method="post">
+                {% csrf_token %}
+                <label for="city">City: </label>
+                {{ form.name }}
+                <input type="submit" name="send" value="Know" class="mt-2 bnt-info">
+            </form>
+        </div>
+        <div class="col-5 ">
+            <h1> Information: </h1>
+            {% for info in all_info %}
+
+                <div class="alert alert-info">
+
+                    {% if info.icon == 'error' %}
+                        <b>City: </b> {{ info.city }} - <b class="b-error"> ERROR </b>
+                    {% else %}
+                        <b>City: </b> {{ info.city }} <br>
+                        <b>Temp: </b> {{ info.temp }}
+                        <img src="http://openweathermap.org/img/w/{{ info.icon }}.png"></img>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
